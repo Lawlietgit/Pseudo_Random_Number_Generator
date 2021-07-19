@@ -37,9 +37,10 @@ plt.close()
 # https://en.wikipedia.org/wiki/Box%E2%80%93Muller_transform
 U1 = outputs[:-1]
 U2 = outputs[1:]
+cond = (U1 > 0)
+U1 = U1[cond]
+U2 = U2[cond]
 Z = np.sqrt(-2.*np.log(U1))*np.cos(2*np.pi*U2)
-Z = Z[np.isfinite(Z)]
-print(Z)
 
 plt.figure()
 plt.hist(Z, 20, density=True, alpha=0.75)
